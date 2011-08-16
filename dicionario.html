@@ -1,6 +1,10 @@
 <style>
 @import "http://www.priberam.pt/SimpleDLPO/css/styles.css";
 
+* {
+	color: black;
+}
+
 body {
 	margin: 0px;
 	padding: 10px;
@@ -21,22 +25,34 @@ body {
 }
 
 #resultado {
-		text-align: left;
-		overflow: auto;
-		max-height: 370px;
+	text-align: left;
+	overflow: auto;
+	max-height: 370px;
+	display: none;
+}
+
+#load_info {
+	margin: 20px;
+	display: none;
+}
+
+#load_info.error {
+	color: white;
+	background: #FF1C1C;
+	border-radius: 5px;
+	padding: 5px;
+	font-weight: bold;
+	font-size: 12px;
 }
 
 #footer {
 	margin-top: 20px;
 }
 
-* {
-	color: black;
-}
-
 a {
 	color: #333;
 }
+
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
 
@@ -68,6 +84,26 @@ $(document).ready(function() {
 			$('#botao').click();
 		}
 	});
+
+	$('#load_info').ajaxStart(function() {
+		$(this).attr('class', '');
+		$('#resultado').css('display', 'none');
+		$(this).html('<img src="images/loading.gif" width="50px" height="50px" />');
+		$(this).css('display', 'block');
+		$('#palavra').val('');
+	});
+
+	$('#load_info').ajaxSuccess(function() {
+		$(this).html('');
+		$(this).css('display', 'none');
+		$('#resultado').css('display', 'block');
+	});
+
+	$('#load_info').ajaxError(function() {
+		$(this).html('');
+		$(this).html('Oops! Houve um erro ao recuperar o significado da palavra!');
+		$(this).attr('class', 'error');
+	});
 });
 </script>
 
@@ -75,8 +111,9 @@ $(document).ready(function() {
 <input id="palavra" type="text" /><br />
 <input id="botao" type="button" value="Pesquisar"/>
 
+<div id="load_info" class="error">Oops! Houve um erro ao recuperar o significado da palavra!</div>
 <div id="resultado"></div>
 
 <div id="footer">
-Powered by <a href="http://www.priberam.pt" target="_blank"><img src="priberam.gif" width="" height="15px"/></a>
+Powered by <a href="http://www.priberam.pt" target="_blank"><img src="images/priberam.gif" width="" height="15px"/></a>
 </div>
