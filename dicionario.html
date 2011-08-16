@@ -87,7 +87,7 @@ $(document).ready(function() {
 
 	$('#load_info').ajaxStart(function() {
 		$(this).attr('class', '');
-		$('#resultado').css('display', 'none');
+		$('#resultado').slideUp();
 		$(this).html('<img src="images/loading.gif" width="50px" height="50px" />');
 		$(this).css('display', 'block');
 		$('#palavra').val('');
@@ -96,7 +96,7 @@ $(document).ready(function() {
 	$('#load_info').ajaxSuccess(function() {
 		$(this).html('');
 		$(this).css('display', 'none');
-		$('#resultado').css('display', 'block');
+		$('#resultado').slideDown();
 	});
 
 	$('#load_info').ajaxError(function() {
