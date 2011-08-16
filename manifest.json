@@ -1,0 +1,19 @@
+{
+  "name": "Dicionário da Língua Portuguesa",
+  "version": "1.0",
+  "description": "Simples e eficiente dicionário da língua portuguesa.",
+  "homepage_url": "https://github.com/xurumelous/chrome-dicionario",
+  "icons": { "16": "icon16.png",
+             "24": "icon24.png",
+             "48": "icon48.png",
+             "64": "icon64.png",
+             "128": "icon128.png",
+             "256": "icon256.png" },
+  "browser_action": {
+    "default_icon": "icon24.png",
+    "popup": "dicionario.html"
+  },
+  "permissions": [
+    "http://www.priberam.pt/"
+  ]
+}

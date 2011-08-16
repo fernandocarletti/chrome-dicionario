@@ -1,0 +1,82 @@
+<style>
+@import "http://www.priberam.pt/SimpleDLPO/css/styles.css";
+
+body {
+	margin: 0px;
+	padding: 10px;
+	width: 400px;
+	max-height: 500px;
+	font-family: Helvetica;
+	text-align: center;
+}
+
+#palavra {
+	width: 70%;
+	margin: 5px;
+}
+
+#botao {
+	width: 35%;
+	margin: 5px;
+}
+
+#resultado {
+		text-align: left;
+		overflow: auto;
+		max-height: 370px;
+}
+
+#footer {
+	margin-top: 20px;
+}
+
+* {
+	color: black;
+}
+
+a {
+	color: #333;
+}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+
+<script>
+$(document).ready(function() {
+	// Clique do botão
+	$('#botao').click(function() {
+		$.get('http://www.priberam.pt/SimpleDLPO/VistaGadgetDLPO.aspx', { 'pal': $('#palavra').val() },  function(data) {
+			var table = $('table', data);
+			table = table[3];
+			var div = $('div', table);
+
+			// Remove elementos inúteis e vazios
+			$('hr', div).remove();
+			$('#resultado').empty();
+			$('#resultado').css('height', 'auto');
+			$('#resultado').append(div);
+			$('#resultado div:first').remove();
+			$('#resultado div:first').remove();
+			$('#resultado div:first').remove();
+			$('#resultado a').attr('target', '_blank');
+		});
+	});
+
+	// Caso o usuário aperte enter, clica o botão
+	$('#palavra').keypress(function(keycode) {
+		if(keycode.which == 13)
+		{
+			$('#botao').click();
+		}
+	});
+});
+</script>
+
+<h3>Dicionário da Língua Portuguesa</h3>
+<input id="palavra" type="text" /><br />
+<input id="botao" type="button" value="Pesquisar"/>
+
+<div id="resultado"></div>
+
+<div id="footer">
+Powered by <a href="http://www.priberam.pt" target="_blank"><img src="priberam.gif" width="" height="15px"/></a>
+</div>
