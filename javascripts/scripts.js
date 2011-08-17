@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	// Foca na caixa de pesquisa ao iniciar
+	$('#palavra').focus();
+
 	// Clique do botão
 	$('#botao').click(function() {
 		$.get('http://www.priberam.pt/SimpleDLPO/VistaGadgetDLPO.aspx', { 'pal': $('#palavra').val() },  function(data) {
@@ -26,6 +29,7 @@ $(document).ready(function() {
 		}
 	});
 
+	// Mostra o gif enquanto carrega
 	$('#load_info').ajaxStart(function() {
 		$(this).attr('class', '');
 		$('#resultado').slideUp();
@@ -34,12 +38,14 @@ $(document).ready(function() {
 		$('#palavra').val('');
 	});
 
+	// Mostra o resultado se receber a requisição
 	$('#load_info').ajaxSuccess(function() {
 		$(this).html('');
 		$(this).css('display', 'none');
 		$('#resultado').slideDown();
 	});
 
+	// Mostra o erro caso algo errado ocorra na requisição
 	$('#load_info').ajaxError(function() {
 		$(this).html('');
 		$(this).html('Oops! Houve um erro ao recuperar o significado da palavra!');
