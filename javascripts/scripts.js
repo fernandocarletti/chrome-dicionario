@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 	// Clique do botão
 	$('#botao').click(function() {
-		$.get('http://www.priberam.pt/SimpleDLPO/VistaGadgetDLPO.aspx', { 'pal': $('#palavra').val() },  function(data) {
+		$.get('http://www.priberam.pt/SimpleDLPO/VistaGadgetDLPO.aspx', { 'pal': escape($('#palavra').val()) },  function(data) {
 			var table = $('table', data);
 			table = table[3];
 			var div = $('div', table);
