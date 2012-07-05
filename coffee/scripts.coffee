@@ -14,9 +14,10 @@ $(document).ready ->
 			$('#resultado').empty()
 			$('#resultado').css 'height', 'auto'
 			$('#resultado').append div
-			$('#resultado div:first').remove()
-			$('#resultado a').attr 'target', '_blank'
 
+			for i in [1..3] then $('#resultado div:first').remove()
+
+			$('#resultado a').attr 'target', '_blank'
 
 	# Caso o usuário aperte enter, clica o botão
 	$('#palavra').keypress (keycode) ->
