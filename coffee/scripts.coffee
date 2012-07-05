@@ -15,9 +15,8 @@ $(document).ready ->
 			$('#resultado').css 'height', 'auto'
 			$('#resultado').append div
 			$('#resultado div:first').remove()
-			$('#resultado div:first').remove()
-			$('#resultado div:first').remove()
 			$('#resultado a').attr 'target', '_blank'
+
 
 	# Caso o usuário aperte enter, clica o botão
 	$('#palavra').keypress (keycode) ->

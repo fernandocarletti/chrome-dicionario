@@ -7,7 +7,7 @@
       return $.get('http://www.priberam.pt/SimpleDLPO/VistaGadgetDLPO.aspx', {
         'pal': escape($('#palavra').val())
       }, function(data) {
-        var div, table;
+        var div, i, table, _i;
         table = $('table', data);
         table = table[3];
         div = $('div', table);
@@ -15,9 +15,9 @@
         $('#resultado').empty();
         $('#resultado').css('height', 'auto');
         $('#resultado').append(div);
-        $('#resultado div:first').remove();
-        $('#resultado div:first').remove();
-        $('#resultado div:first').remove();
+        for (i = _i = 1; _i <= 3; i = ++_i) {
+          $('#resultado div:first').remove();
+        }
         return $('#resultado a').attr('target', '_blank');
       });
     });
